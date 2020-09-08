@@ -33,11 +33,7 @@ namespace employee
             Kurs = Check.CheckString();
             Console.WriteLine("Enter grade book number :");
             Number = Check.CheckInt();
-        }
-        public void Print()
-        {
-            
-        }
+        }        
     }
     
     class Aspirant : Student
@@ -50,7 +46,8 @@ namespace employee
         }
         public void Disp()
         {
-            Console.WriteLine(Diss);
+            Console.WriteLine("Thesis :");
+            Diss = Check.CheckString();
         }
 
     }
@@ -70,9 +67,8 @@ namespace employee
                     {
                         if (name[i] == j.ToString()[0])
                         {                         
-                            Console.WriteLine("Wrong enter. Enter again : ");
                             IsIt = false;
-                            break;
+                            break;                            
                         }
                         else
                         {
@@ -80,6 +76,9 @@ namespace employee
                         }
                     }
                 }
+                if (IsIt == false)
+                Console.WriteLine("Wrong enter. Enter again : ");
+
             } while (IsIt == false);
                 return name;
         }
