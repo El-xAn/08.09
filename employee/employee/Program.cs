@@ -18,11 +18,8 @@ namespace employee
         public string Kurs { get; set; }
         public int Number { get; set; }
 
-        public Student (string lastName, string kurs, int number)
+        public Student()
         {
-            LastName = lastName;
-            Kurs = kurs;
-            Number = number;
         }
 
         public void InputData()
@@ -36,15 +33,29 @@ namespace employee
         }
         public void Display()
         {
-            Console.WriteLine($"Student {LastName} from course {Kurs}. Number of grade book is {Number}");
+            Console.WriteLine($"\n" +
+                $"Student {LastName} from course {Kurs}. Number of grade book is {Number}");
         }
     }
-    
+
+    class Students
+    {
+        Student[] data;
+        public Students()
+        {
+            data = new Student[100];
+        }
+        public Student this [int index]
+        {
+            get { return data[index]; }
+            set { data[index] = value; }
+        }
+    }
     class Aspirant : Student
     {
         string Diss { get; set; }
         public Aspirant(string lastName, String kurs, int number, string diss)
-            :base ( lastName,  kurs,  number)
+            :base ( )
         {
             Diss = diss;
         }
@@ -80,8 +91,7 @@ namespace employee
                     }
                 }
                 if (IsIt == false)
-                Console.WriteLine("Wrong enter. Enter again : ");
-
+                Console.WriteLine("Wrong input. Enter again : ");
             } while (IsIt == false);
                 return name;
         }
@@ -95,14 +105,12 @@ namespace employee
 
                 bool result = int.TryParse(input, out num);
                 if (result == false)
-                    Console.WriteLine("Wrong enter. Enter again : ");
+                    Console.WriteLine("Wrong input. Enter again : ");
                 else                   
                         break;
 
             } while (IsIt == false);
             return num;
-
-
         }
     }
     class Program
@@ -114,31 +122,62 @@ namespace employee
                 "\n3.Find student:" +
                 "\n4.Exit:");
 
-            Console.WriteLine("Select number of menu:");
-            
-            Student st = new Student("Alekberov", "IT engineering", 019632);
-            Console.WriteLine("\nClass Aspirant:");
-            Aspirant asp = new Aspirant("", "", 0, "");
-            asp.InputData();
-            asp.Disp();
-
-            int number = 0;
-            switch (number)
+            Aspirant asp = new Aspirant("", "", 0, "");            
+            Student st = new Student();    
+            bool b = false;
+            do
             {
-                case 1:           
-                    st.InputData();           
-                    break;
-                case 2:
-                    st.Display();
-                    break;
-                //case 3:
+                Console.WriteLine("Select number of menu:");
+                int menu = Check.CheckInt();
+                switch (menu)
+                {
+                    case 1:
+                        bool b1 = false;
+                        do
+                        {
+                            Console.WriteLine("Are you:" +
+                                "\n1.Student" +
+                                "\n2.Graduate student");
+                            int m = Check.CheckInt();
+                            if (m == 1)
+                            {
+                                Console.WriteLine("How much students want you to register?");
+                                int n = Check.CheckInt();
+                                for (int i = 0; i < n; i++)
+                                {
+                                    st.InputData();
+                                }
+                                b1 = true;
+                                break;
+                            }
 
-                //case 4:
+                            if (m == 2)
+                            {
+                                Console.WriteLine("How much Graduate students want you to register?");
+                                int n = Check.CheckInt();
+                                for (int i = 0; i < n; i++)
+                                {
+                                    st.InputData();
+                                    asp.Disp();
+                                }
+                                b1 = true;
+                                break;
+                            }
 
-
-            }
-            
-
+                        } while (b1 == false);
+                        break;  
+                    case 2:
+                        st.Display();
+                        break;
+                    case 3:
+                        Console.WriteLine();
+                        break;
+                    case 4:
+                        Console.WriteLine("The program has finished.");
+                        b = true;
+                        break;
+                }
+            } while (b == false);
         }
     }
 }
