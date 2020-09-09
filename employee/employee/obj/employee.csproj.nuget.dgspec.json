@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\User\\Desktop\\08.09\\employee\\employee\\employee.csproj": {}
+    "C:\\08.09\\employee\\employee\\employee.csproj": {}
   },
   "projects": {
-    "C:\\Users\\User\\Desktop\\08.09\\employee\\employee\\employee.csproj": {
+    "C:\\08.09\\employee\\employee\\employee.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\User\\Desktop\\08.09\\employee\\employee\\employee.csproj",
+        "projectUniqueName": "C:\\08.09\\employee\\employee\\employee.csproj",
         "projectName": "employee",
-        "projectPath": "C:\\Users\\User\\Desktop\\08.09\\employee\\employee\\employee.csproj",
-        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\User\\Desktop\\08.09\\employee\\employee\\obj\\",
+        "projectPath": "C:\\08.09\\employee\\employee\\employee.csproj",
+        "packagesPath": "C:\\Users\\Me\\.nuget\\packages\\",
+        "outputPath": "C:\\08.09\\employee\\employee\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Me\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -52,7 +52,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.401\\RuntimeIdentifierGraph.json"
         }
       }
     }

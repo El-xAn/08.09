@@ -33,7 +33,11 @@ namespace employee
             Kurs = Check.CheckString();
             Console.WriteLine("Enter grade book number :");
             Number = Check.CheckInt();
-        }        
+        }
+        public void Display()
+        {
+            Console.WriteLine($"Student {LastName} from course {Kurs}. Number of grade book is {Number}");
+        }
     }
     
     class Aspirant : Student
@@ -49,7 +53,6 @@ namespace employee
             Console.WriteLine("Thesis :");
             Diss = Check.CheckString();
         }
-
     }
     class Check
     {
@@ -106,12 +109,35 @@ namespace employee
     {
         static void Main(string[] args)
         {
-            Student st = new Student("Alekberov","IT engineering", 019632 );
-            st.InputData();
+            Console.WriteLine("1.Register students:" +
+                "\n2.Show all registered students:" +
+                "\n3.Find student:" +
+                "\n4.Exit:");
+
+            Console.WriteLine("Select number of menu:");
+            
+            Student st = new Student("Alekberov", "IT engineering", 019632);
             Console.WriteLine("\nClass Aspirant:");
-            Aspirant asp = new Aspirant("", "", 0 , "");
+            Aspirant asp = new Aspirant("", "", 0, "");
             asp.InputData();
             asp.Disp();
+
+            int number = 0;
+            switch (number)
+            {
+                case 1:           
+                    st.InputData();           
+                    break;
+                case 2:
+                    st.Display();
+                    break;
+                //case 3:
+
+                //case 4:
+
+
+            }
+            
 
         }
     }
