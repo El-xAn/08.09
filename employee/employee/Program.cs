@@ -20,6 +20,7 @@ namespace employee
 
         public Student()
         {
+            InputData();
         }
 
         public void InputData()
@@ -33,14 +34,13 @@ namespace employee
         }
         public void Display()
         {
-            Console.WriteLine($"\n" +
-                $"Student {LastName} from course {Kurs}. Number of grade book is {Number}");
+            Console.WriteLine($"Student {LastName} from course {Kurs}. Number of grade book is {Number}");
         }
     }
 
     class Students
     {
-        Student[] data;
+        public  Student[] data;
         public Students()
         {
             data = new Student[100];
@@ -51,18 +51,37 @@ namespace employee
             set { data[index] = value; }
         }
     }
+    
     class Aspirant : Student
     {
         string Diss { get; set; }
         public Aspirant(string lastName, String kurs, int number, string diss)
-            :base ( )
+            :base ()
         {
             Diss = diss;
+            Disp();
         }
         public void Disp()
         {
             Console.WriteLine("Thesis :");
-            Diss = Check.CheckString();
+            Diss = Check.CheckString();            
+        }
+        public void DisplayA()
+        {
+            Console.WriteLine($"Student {LastName} from course {Kurs}. Number of grade book is {Number}. Name of {Diss}");
+        }
+    }
+    class Aspirants
+    {
+        public  Aspirant[] data;
+        public Aspirants()
+        {
+            data = new Aspirant[100];
+        }
+        public Aspirant this[int index]
+        {
+            get { return data[index]; }
+            set { data[index] = value; }
         }
     }
     class Check
@@ -121,31 +140,39 @@ namespace employee
                 "\n2.Show all registered students:" +
                 "\n3.Find student:" +
                 "\n4.Exit:");
+           
+            int count1=0;
+            int count2=0;
 
-            Aspirant asp = new Aspirant("", "", 0, "");            
-            Student st = new Student();    
+            Students st = new Students();            
+            Aspirants asp = new Aspirants();
+            
+
             bool b = false;
             do
             {
+                bool b1 = false;
+
                 Console.WriteLine("Select number of menu:");
                 int menu = Check.CheckInt();
                 switch (menu)
                 {
                     case 1:
-                        bool b1 = false;
                         do
                         {
                             Console.WriteLine("Are you:" +
                                 "\n1.Student" +
                                 "\n2.Graduate student");
+                           
                             int m = Check.CheckInt();
                             if (m == 1)
-                            {
+                            {                                
                                 Console.WriteLine("How much students want you to register?");
-                                int n = Check.CheckInt();
-                                for (int i = 0; i < n; i++)
+                                count1 += Check.CheckInt();                               
+                                
+                                for (int i = 0; i < count1; i++)
                                 {
-                                    st.InputData();
+                                    st[i] = new Student();                                    
                                 }
                                 b1 = true;
                                 break;
@@ -154,23 +181,67 @@ namespace employee
                             if (m == 2)
                             {
                                 Console.WriteLine("How much Graduate students want you to register?");
-                                int n = Check.CheckInt();
-                                for (int i = 0; i < n; i++)
+                                count2 += Check.CheckInt();
+                                
+                                for (int i = 0; i < count2; i++)
                                 {
-                                    st.InputData();
-                                    asp.Disp();
+                                    asp[i] = new Aspirant("", "", 0, "");                                  
                                 }
                                 b1 = true;
                                 break;
                             }
 
                         } while (b1 == false);
-                        break;  
+                        break;
                     case 2:
-                        st.Display();
+                        for (int i = 0; i < count1 ; i++)
+                        {
+                            st[i].Display();
+                        }
+                        for (int i = 0; i < count2; i++)
+                        {
+                            asp[i].DisplayA();
+                        }
                         break;
                     case 3:
-                        Console.WriteLine();
+                        do
+                        {
+                            Console.WriteLine("Input who want you to search: Student (stud) or graduate student (asp) ?" );
+                            string who = Console.ReadLine();
+                            if (who == "stud" || who == "Stud")
+                            {
+                                Console.WriteLine("Enter student's number:");
+                                int num = Check.CheckInt();
+                                if (st[num - 1] == null)
+                                {
+                                    Console.WriteLine("There aren't any students.");
+                                }
+                                else
+                                {
+                                    st[num - 1].Display();
+                                }
+                                b1 = true;
+                            }
+                            else if (who == "asp" || who == "Asp")
+                            {
+                                Console.WriteLine("Enter graduate student's number:");
+                                int num = Check.CheckInt();
+                                if (asp[num-1] == null)
+                                {
+                                    Console.WriteLine("There aren't any graduate students.");
+                                }
+                                else
+                                {
+                                    asp[num - 1].DisplayA();
+                                }
+                                b1 = true;
+                            }
+                            else
+                            {
+                                Console.WriteLine("Wrong enter, try again.");
+                                b1 = false;
+                            }
+                        } while (b1 == false);
                         break;
                     case 4:
                         Console.WriteLine("The program has finished.");

@@ -23,18 +23,41 @@ class Account
             AccountNum = accountNum;
             OpenDate = openDate;
         }
+        void GetSum()
+        {
+            Console.WriteLine($"Vasha summa na scetu: {Sum}");
+        }
+        void GetDate()
+        {
+            Console.WriteLine($"Data otkritiya sceta :{OpenDate}");
+        }
 
     }
     class IndividualAccount : Account
     {
+        string Account { get; set; }
+        public IndividualAccount(int sum, int accountNum, string openDate, string account)
+            : base( sum,  accountNum,  openDate )
+        {
+            Account = account;
+        }      
+    
+    public void CountPer()
+        {
 
+        }
+    public void TakeMoney()
+        {
+
+        }    
     }
-    class 
+
+    //class 
     class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            IndividualAccount acc1 = new IndividualAccount(5,6, "21.06" , "salam" );
         }
     }
 }
